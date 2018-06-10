@@ -8,9 +8,24 @@
        http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
 
 
-    <webflow-config:flow-registry id="mainFlowRegistry">
+    <webflow-config:flow-registry id="mainFlowRegistry" flow-builder-services="flowBuilderServices">
         <webflow-config:flow-location id="main" path="/WEB-INF/flows/main-flow.xml"/>
     </webflow-config:flow-registry>
 
-    <webflow-config:flow-executor id="mainFlowExecutor" flow-registry="mainFlowRegistry"/>
+    <webflow-config:flow-executor id="mainFlowExecutor" flow-registry="mainFlowRegistry" />
+
+
+
+    <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+        <property name="viewResolvers">
+            <list>
+                <ref bean="viewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <webflow-config:flow-builder-services view-factory-creator="viewFactoryCreator" id="flowBuilderServices"/>
+
+
 </beans>

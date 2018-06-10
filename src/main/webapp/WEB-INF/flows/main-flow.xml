@@ -6,6 +6,6 @@
 start-state="home"
 >
 
-    <view-state id="home" view="/WEB-INF/views/home.jsp"/>
+    <view-state id="home" view="home"/>
 
 </flow>
