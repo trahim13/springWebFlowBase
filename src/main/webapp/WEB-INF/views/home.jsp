@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -13,6 +17,8 @@
 <body>
 
 <a href="${flowExecutionUrl}&_eventId=mainPage">To main page.</a>
+
+
 
 </body>
 </html>

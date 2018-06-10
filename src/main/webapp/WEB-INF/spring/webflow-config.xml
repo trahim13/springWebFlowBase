@@ -10,6 +10,7 @@
 
     <webflow-config:flow-registry id="mainFlowRegistry" flow-builder-services="flowBuilderServices">
         <webflow-config:flow-location id="start" path="/WEB-INF/flows/main-flow.xml"/>
+        <webflow-config:flow-location id="login" path="/WEB-INF/flows/login.xml"/>
     </webflow-config:flow-registry>
 
     <webflow-config:flow-executor id="mainFlowExecutor" flow-registry="mainFlowRegistry" />

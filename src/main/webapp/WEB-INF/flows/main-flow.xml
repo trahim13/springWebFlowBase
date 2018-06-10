@@ -6,6 +6,7 @@
 start-state="home"
 >
 
+
     <view-state id="home" view="home">
         <transition on="mainPage" to="main"/>
     </view-state>
