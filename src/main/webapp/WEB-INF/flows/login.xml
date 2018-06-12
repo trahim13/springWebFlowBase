@@ -10,7 +10,13 @@
 
     <view-state id="loginForm" view="login" model="user">
         <transition on="submit" to="actionCheckLogin"/>
+        <transition on="createUser" to="createUserFlow"/>
     </view-state>
+
+    <subflow-state id="createUserFlow" subflow="create-user">
+        <input name="user"/>
+        <transition on="end" to="loginForm"/>
+    </subflow-state>
 
 
     <action-state id="actionCheckLogin">
