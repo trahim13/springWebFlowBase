@@ -21,12 +21,11 @@ public class UserService {
 
     public String checkUser(User user) {
 
-        for (User userEx :
-                userList) {
-            if (userEx.equals(user)) {
-                return "success";
-            }
+
+        if (userList.contains(user)) {
+            return "success";
         }
+
         return "failed";
     }
 }

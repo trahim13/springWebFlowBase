@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -13,6 +15,11 @@
     <title>Title</title>
 </head>
 <body>
+
+<c:if test="${not empty message}">
+    <span style="float: right" class="error">${message}</span>
+</c:if>
+
 <form:form method="post" modelAttribute="user">
     <form:label path="name"><spring:message code="username"/></form:label>
     <form:input path="name"/>
@@ -22,6 +29,8 @@
     <form:label path="password"><spring:message code="password"/></form:label>
     <form:password path="password"/>
     <form:errors path="password"/>
+
+
 
     <a href="${flowExecutionUrl}&_eventId=createUser"><spring:message code="create-user"/></a>
 

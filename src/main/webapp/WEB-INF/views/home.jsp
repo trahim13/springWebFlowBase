@@ -17,7 +17,9 @@
 <body>
 
 <a href="${flowExecutionUrl}&_eventId=mainPage">To main page.</a>
-
+<p>P.s. Два потока:</p>
+<p>/start</p>
+<p>/login</p>
 
 
 </body>
