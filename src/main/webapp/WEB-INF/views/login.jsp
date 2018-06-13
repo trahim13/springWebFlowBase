@@ -16,11 +16,17 @@
 </head>
 <body>
 
-<c:if test="${not empty message}">
-    <span style="float: right" class="error">${message}</span>
+<c:if test="${not empty check_user}">
+    <span style="float: right" class="error">${check_user}</span>
 </c:if>
 
 <form:form method="post" modelAttribute="user">
+
+    <span>
+            <a href="?lang=ru"><spring:message code="ru"/></a>
+            <a href="?lang=en"><spring:message code="en"/></a>
+        </span>
+
     <form:label path="name"><spring:message code="username"/></form:label>
     <form:input path="name"/>
     <form:errors path="name"/>
