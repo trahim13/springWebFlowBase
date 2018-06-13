@@ -20,6 +20,19 @@
     <span style="float: right">${check_user}</span>
 </c:if>
 
+<c:if
+        test="${not empty flowRequestContext.messageContext.allMessages}">
+    <ul class="red_messages">
+        <c:forEach items="${flowRequestContext.messageContext.allMessages}"
+                   var="message">
+
+            <li>${message.text}</li>
+
+        </c:forEach>
+
+    </ul>
+</c:if>
+
 <form:form method="post" modelAttribute="user">
 
     <span>

@@ -1,6 +1,8 @@
 package org.trahim.spring.objects;
 
+import org.springframework.binding.message.MessageBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.webflow.execution.RequestContext;
 import org.trahim.spring.exeptions.UserExistExeption;
 
 import java.util.ArrayList;
@@ -15,11 +17,13 @@ public class UserService {
         userList.add(new User("admin", "admin"));
     }
 
-    public void createUser(User user) throws UserExistExeption {
-        if (checkUser(user).equals("success")) {
+    public void createUser(User user, RequestContext context) throws UserExistExeption {
+        if (usernameExist(user.getName())) {
             throw new UserExistExeption();
         }
         userList.add(user);
+        context.getMessageContext().addMessage(new MessageBuilder().code("user_created").build());
+        context.getMessageContext().addMessage(new MessageBuilder().code("enter").build());
     }
 
 
@@ -31,5 +35,16 @@ public class UserService {
         }
 
         return "failed";
+    }
+
+
+    private boolean usernameExist(String username) {
+        for (User user : userList) {
+            if (user.getName().equals(username)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

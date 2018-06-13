@@ -14,7 +14,7 @@ start-state="createUserForm"
     </view-state>
 
     <action-state id="createUserAction">
-        <evaluate expression="userService.createUser(user)"/>
+        <evaluate expression="userService.createUser(user, flowRequestContext)"/>
 
         <transition on-exception="org.trahim.spring.exeptions.UserExistExeption" to="createUserForm">
             <set name="flashScope.user_exist" value="resourceBundle.user_exist"/>
