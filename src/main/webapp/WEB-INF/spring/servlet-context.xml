@@ -12,12 +12,21 @@
 <!--какие адреса на потоки-->
     <bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
         <property name="flowRegistry" ref="mainFlowRegistry"/>
+        <property name="order" value="0"/>
     </bean>
 
-    <!--исполнитель-->
+    <!--исполнитель потоков-->
     <bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
         <property name="flowExecutor" ref="mainFlowExecutor"/>
     </bean>
+
+
+    <!--MCV-->
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
