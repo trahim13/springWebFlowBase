@@ -7,7 +7,7 @@
 
     <mvc:annotation-driven/>
     <context:component-scan base-package="org.trahim.spring"/>
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/, classpath:/META-INF/web-resources/"/>
 
 <!--какие адреса на потоки-->
     <bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">

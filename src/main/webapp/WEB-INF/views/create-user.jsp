@@ -20,6 +20,12 @@
 </c:if>
 
 <form:form method="post" modelAttribute="user">
+
+        <span>
+            <a href="?lang=ru"><spring:message code="ru"/></a>
+            <a href="?lang=en"><spring:message code="en"/></a>
+        </span>
+
     <form:label path="name"><spring:message code="username"/></form:label>
     <form:input path="name"/>
     <form:errors path="name"/>

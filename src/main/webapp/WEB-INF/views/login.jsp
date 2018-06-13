@@ -13,6 +13,23 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="<c:url value="/resources/dijit/themes/tundra/tundra.css"/>" rel="stylesheet"/>
+
+    <script type="text/javascript"
+            src="<c:url value="/resources/dojo/dojo.js" />">
+
+    </script>
+
+    <script type="text/javascript"
+            src="<c:url value="/resources/spring/Spring.js" />">
+
+    </script>
+
+    <script type="text/javascript"
+            src="<c:url value="/resources/spring/Spring-Dojo.js" />">
+
+    </script>
+
 </head>
 <body>
 
@@ -35,20 +52,39 @@
 
 <form:form method="post" modelAttribute="user">
 
-    <span>
+        <span>
             <a href="?lang=ru"><spring:message code="ru"/></a>
             <a href="?lang=en"><spring:message code="en"/></a>
         </span>
 
     <form:label path="name"><spring:message code="username"/></form:label>
-    <form:input path="name"/>
+    <form:input path="name" id="name"/>
+    <script type="text/javascript">
+        Spring.addDecoration(new Spring.ElementDecoration({
+            elementId : "name",
+            widgetType : "dijit.form.ValidationTextBox",
+
+            widgetAttrs : {
+                promptMessage : "<spring:message code="enter_username" />"
+            }
+        }));
+    </script>
     <form:errors path="name"/>
 
 
     <form:label path="password"><spring:message code="password"/></form:label>
-    <form:password path="password"/>
-    <form:errors path="password"/>
+    <form:password path="password" id="password"/>
+    <script type="text/javascript">
+        Spring.addDecoration(new Spring.ElementDecoration({
+            elementId : "password",
+            widgetType : "dijit.form.ValidationTextBox",
 
+            widgetAttrs : {
+                promptMessage : "<spring:message code="enter_password" />"
+            }
+        }));
+    </script>
+    <form:errors path="password"/>
 
 
     <a href="${flowExecutionUrl}&_eventId=createUser"><spring:message code="create-user"/></a>
