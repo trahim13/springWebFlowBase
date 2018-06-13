@@ -1,6 +1,7 @@
 package org.trahim.spring.objects;
 
 import org.springframework.stereotype.Component;
+import org.trahim.spring.exeptions.UserExistExeption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,10 @@ public class UserService {
         userList.add(new User("admin", "admin"));
     }
 
-    public void createUser(User user) {
+    public void createUser(User user) throws UserExistExeption {
+        if (checkUser(user).equals("success")) {
+            throw new UserExistExeption();
+        }
         userList.add(user);
     }
 

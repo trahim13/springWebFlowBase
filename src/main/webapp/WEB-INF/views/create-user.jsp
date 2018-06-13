@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -13,6 +14,10 @@
     <title>Create user state</title>
 </head>
 <body>
+
+<c:if test="${not empty user_exist}">
+    <span style="float: right">${user_exist}</span>
+</c:if>
 
 <form:form method="post" modelAttribute="user">
     <form:label path="name"><spring:message code="username"/></form:label>

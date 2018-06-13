@@ -15,6 +15,11 @@ start-state="createUserForm"
 
     <action-state id="createUserAction">
         <evaluate expression="userService.createUser(user)"/>
+
+        <transition on-exception="org.trahim.spring.exeptions.UserExistExeption" to="createUserForm">
+            <set name="flashScope.user_exist" value="resourceBundle.user_exist"/>
+        </transition>
+
         <transition to="end"/>
     </action-state>
                   
@@ -22,5 +27,9 @@ start-state="createUserForm"
     <end-state id="end">
         <output name="user"/>
     </end-state>
+
+    <global-transitions>
+        <transition on-exception="java.lang.Exception" to="createUserForm" />
+    </global-transitions>
 
 </flow>

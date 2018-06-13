@@ -17,7 +17,7 @@
 <body>
 
 <c:if test="${not empty check_user}">
-    <span style="float: right" class="error">${check_user}</span>
+    <span style="float: right">${check_user}</span>
 </c:if>
 
 <form:form method="post" modelAttribute="user">
