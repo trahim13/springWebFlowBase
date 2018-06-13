@@ -17,5 +17,7 @@
             <a href="?lang=en"><spring:message code="en"/></a>
         </span>
 ${message}
+<p><a href="/flowone"><spring:message code="flow_one"/></a></p>
+<p><a href="/flowtwo"><spring:message code="flow_two"/></a></p>
 </body>
 </html>

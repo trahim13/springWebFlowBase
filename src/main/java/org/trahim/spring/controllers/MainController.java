@@ -19,4 +19,15 @@ public class MainController {
         return new ModelAndView("main-mcv", "message", messageSource.getMessage("hello_mcv", null, locale));
     }
 
+    @RequestMapping(value = "flowone", method = RequestMethod.GET)
+    public String toFlowOne() {
+        return "redirect:start";
+    }
+
+
+    @RequestMapping(value = "flowtwo", method = RequestMethod.GET)
+    public String toFlowTwo() {
+        return "redirect:login";
+    }
+
 }
