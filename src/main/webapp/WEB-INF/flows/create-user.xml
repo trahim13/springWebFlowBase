@@ -9,8 +9,8 @@ start-state="createUserForm"
     <input name="user" required="true"/>
 
     <view-state id="createUserForm" model="user" view="create-user">
-        <transition on="cancel" to="end"/>
-        <transition on="create" to="createUserAction"/>
+        <transition on="cancel" to="end" validate="false"/>
+        <transition on="create" to="createUserAction" />
     </view-state>
 
     <action-state id="createUserAction">

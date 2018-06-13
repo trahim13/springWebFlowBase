@@ -27,7 +27,12 @@
     </bean>
 
 
-    <webflow-config:flow-builder-services view-factory-creator="viewFactoryCreator" id="flowBuilderServices"/>
+    <webflow-config:flow-builder-services view-factory-creator="viewFactoryCreator" id="flowBuilderServices" validator="validatorFactoryBean"/>
+
+
+    <bean id="validatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+
 
 
 </beans>
