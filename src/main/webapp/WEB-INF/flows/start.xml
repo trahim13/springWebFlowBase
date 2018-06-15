@@ -11,11 +11,11 @@ start-state="home"
         <transition on="mainPage" to="main"/>
     </view-state>
 
-    <view-state id="main" view="main">
-        <transition on="homePage" to="home"/>
-        <transition on="cancelPage" to="cancel"/>
-    </view-state>
+        <view-state id="main" view="main">
+            <transition on="homePage" to="home"/>
+            <transition on="cancelPage" to="cancel"/>
+        </view-state>
 
-    <end-state id="cancel" view="cancel"/>
+        <end-state id="cancel" view="cancel"/>
 
 </flow>

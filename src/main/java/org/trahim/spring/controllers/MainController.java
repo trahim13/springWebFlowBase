@@ -11,13 +11,13 @@ import java.util.Locale;
 
 @Controller
 public class MainController {
-    @Autowired
-    private MessageSource messageSource;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView main(Locale locale) {
-        return new ModelAndView("main-mcv", "message", messageSource.getMessage("hello_mcv", null, locale));
-    }
+//    @Autowired
+//    private MessageSource messageSource;
+//
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView main(Locale locale) {
+//        return new ModelAndView("main-mcv", "message", messageSource.getMessage("hello_mcv", null, locale));
+//    }
 
     @RequestMapping(value = "flowone", method = RequestMethod.GET)
     public String toFlowOne() {
@@ -25,9 +25,14 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "flowtwo", method = RequestMethod.GET)
+//    @RequestMapping(value = "flowtwo", method = RequestMethod.GET)
+//    public String toFlowTwo() {
+//        return "redirect:login";
+//    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String toFlowTwo() {
-        return "redirect:login";
+        return "redirect:jsfflow";
     }
 
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:webflow-config="http://www.springframework.org/schema/webflow-config"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:faces="http://www.springframework.org/schema/faces"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces.xsd">
+
+
+
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="org.trahim.spring"/>
+    <mvc:resources mapping="/resources/**" location="/resources/, classpath:/META-INF/web-resources/"/>
+    <faces:resources/>
+
+
+    <!--какие адреса на потоки-->
+    <bean id="flowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+        <property name="flowRegistry" ref="jsfFlowRegistry"/>
+        <property name="order" value="0"/>
+    </bean>
+
+    <!--исполнитель потоков-->
+    <bean id="flowHandlerAdapter" class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
+        <property name="flowExecutor" ref="jsfFlowExecutor"/>
+    </bean>
+
+
+    <!--MCV-->
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+
+
+    <bean id="jsfViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.faces.mvc.JsfView" />
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".xhtml" />
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="basename" value="/WEB-INF/locales/mesages"/>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
+    </bean>
+
+    <bean id="changeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <ref bean="changeInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings" value="/javax.faces.resource/**=jsfResourceHandler" />
+    </bean>
+
+
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+
+
+    <bean id="jsfResourceHandler" class="org.springframework.faces.webflow.JsfResourceRequestHandler" />
+
+
+
+
+</beans>

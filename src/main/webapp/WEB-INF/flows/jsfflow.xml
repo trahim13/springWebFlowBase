@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+       http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+      start-state="jsf"
+
+>
+
+    <view-state id="jsf" view="jsf-main" >
+        <transition on="nextJsf" to="jsfNext"  />
+    </view-state>
+
+    <view-state id="jsfNext" view="jsf-next">
+        <transition on="oneJsf" to="jsf" />
+        <transition on="twoJsf" to="cancel" />
+    </view-state>
+
+    <end-state id="cancel" view="jsf-cancel"/>
+</flow>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:webflow-config="http://www.springframework.org/schema/webflow-config"
+       xmlns:faces="http://www.springframework.org/schema/faces"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces.xsd">
+
+
+    <bean id="facesContextListener" class="org.springframework.faces.webflow.FlowFacesContextLifecycleListener"/>
+
+
+    <faces:flow-builder-services id="flowBuilderServices" view-factory-creator="jsfViewFactoryCreator"/>
+
+
+    <!--Регистрируем потоки-->
+    <webflow-config:flow-registry id="jsfFlowRegistry" flow-builder-services="flowBuilderServices"
+                                  base-path="/WEB-INF/flows/">
+        <webflow-config:flow-location-pattern value="/**/*.xml"/>
+    </webflow-config:flow-registry>
+
+    <!--Исполнитель-->
+    <webflow-config:flow-executor id="jsfFlowExecutor" flow-registry="jsfFlowRegistry">
+        <webflow-config:flow-execution-listeners>
+            <webflow-config:listener ref="facesContextListener"/>
+
+        </webflow-config:flow-execution-listeners>
+
+    </webflow-config:flow-executor>
+
+
+
+    <bean id="jsfViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+        <property name="viewResolvers">
+            <list>
+                <ref bean="jsfViewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="validatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <faces:resources />
+
+
+</beans>
